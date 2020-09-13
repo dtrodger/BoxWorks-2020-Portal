@@ -1,0 +1,36 @@
+{% extends "_base.html" %}
+{% block body %}
+<nav>
+    <div class="nav-wrapper indigo darken-3 nav-gradient">
+        <ul class="left">
+            <li class="reduce" style="margin-left:5px;">ACME Inc. Secure Content Collaboration</li>
+        </ul>
+    </div>
+</nav>
+<div class="row" style="margin-top:100px;">
+    <div class="col s12 m6 offset-m3">
+        <div class="card-panel z-depth-5">
+            <h3 class="center">Login</h3>
+            <form role="form" method="POST" action="{{ url_for('content.login') }}">
+                {{ login_form.csrf_token }}
+                <div class="input-field col s12 m12">
+                  <i class="fa fa-envelope prefix" aria-hidden="true"></i>
+                  {{ login_form.email(placeholder="Email") }}
+                  {% if login_form.email.errors %}
+                    <span class="error">
+                        {% for error in login_form.email.errors %}
+                          {{ error }}
+                        {% endfor %}
+                    </span>
+                  {% endif %}
+                </div>
+                <div class="input-field col s12 m12">
+                  <i class="fa fa-unlock-alt prefix"></i>
+                  {{ login_form.password(placeholder="password") }}
+                </div>
+                <button class="btn btn-success btn-block indigo loading-on-submit" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

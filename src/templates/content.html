@@ -1,0 +1,73 @@
+{% extends "_base.html" %}
+{% block css %}
+    <!-- Box Content Explorer UI Element CSS CDN -->
+    <script src="https://cdn01.boxcdn.net/polyfills/core-js/2.5.3/core.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.css"
+    />
+    <style>
+        .be-logo {
+            display: none;
+        }
+        .bdl-Breadcrumb-title {
+            display: none;
+        }
+    </style>
+{% endblock %}
+{% block body %}
+<nav>
+    <div class="nav-wrapper indigo darken-3 nav-gradient">
+        <ul class="left">
+            <li class="reduce" style="margin-left:5px;">ACME Inc. Secure Content Collaboration</li>
+        </ul>
+        <ul class="right full-width-nav">
+            <li><a href="{{ url_for('content.logout')}}">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="row" style="margin-top: 50px;">
+    <div class="col s12 m10 offset-m1">
+        <div class="card-panel z-depth-5">
+            <h4 class="center">In Review</h4>
+            <div class="box-content-explorer-in-review" style="height:600px"></div>
+        </div>
+        <div class="card-panel z-depth-5" style="margin-top:50px">
+            <h4 class="center">Approved</h4>
+            <div class="box-content-explorer-approved" style="height:600px"></div>
+        </div>
+        <div class="card-panel z-depth-5" style="margin-top:50px">
+            <h4 class="center">Rejected</h4>
+            <div class="box-content-explorer-rejected" style="height:600px"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block js %}
+    <!-- Box Content Explorer UI Element JavaScript CDN -->
+    <script src="https://cdn01.boxcdn.net/platform/elements/11.0.2/en-US/explorer.js"></script>
+    <!-- Box Content Explorer UI Element instantiation -->
+    <script>
+      var boxAccessToken = "{{ box_access_token }}";
+      var inReviewFolderId = "{{ box_in_review_folder_id }}";
+      var inReviewContentExplorer = new Box.ContentExplorer();
+      inReviewContentExplorer.show(inReviewFolderId, boxAccessToken, {
+        container: ".box-content-explorer-in-review",
+        canCreateNewFolder: false,
+        canShare: false,
+        canRename: false
+      });
+      var approvedFolderId = "{{ box_approved_folder_id }}";
+      var approvedContentExplorer = new Box.ContentExplorer();
+      approvedContentExplorer.show(approvedFolderId, boxAccessToken, {
+        container: ".box-content-explorer-approved",
+        canShare: false
+      });
+      var rejectedFolderId = "{{ box_rejected_folder_id }}";
+      var rejectedContentExplorer = new Box.ContentExplorer();
+      rejectedContentExplorer.show(rejectedFolderId, boxAccessToken, {
+        container: ".box-content-explorer-rejected",
+        canShare: false
+      });
+    </script>
+{% endblock %}
