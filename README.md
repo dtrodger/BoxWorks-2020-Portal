@@ -1,5 +1,5 @@
 ## BoxWorks 2020 - Box Platform Integration Best Practices  
-### Architecture Diagram  
+### Architecture    
 ![architecture](docs/architecture.png)  
 ### UI  
 #### Login View  

@@ -16,7 +16,7 @@ BOX_JWT_KEYS_FILE_PATH = os.path.join(
     os.path.dirname(__file__), "..", "box_jwt_keys.yml"
 )
 IDP = {
-    "vhuarez@smithco.com": {
+    "drodgers@box.com": {
         "password": "Welcome2020",
         "box_app_user_id": "13761043560",
         "box_in_review_folder_id": "122234215069",
